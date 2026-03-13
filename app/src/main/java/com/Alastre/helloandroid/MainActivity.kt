@@ -1,47 +1,20 @@
 package com.Alastre.helloandroid
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import com.Alastre.helloandroid.viewmodel.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    // ViewModel a nivel de Activity (compartido con fragments)
+    private val viewModel: UserViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.textView)
-        val btnSaludar = findViewById<Button>(R.id.btnSaludar)
-
-        var contador = 0
-
-        btnSaludar.setOnClickListener {
-
-            contador++
-            textView.text = "Has hecho clic $contador veces"
-
-            Toast.makeText(
-                this,
-                "¡Botón presionado!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
-            insets
-        }
+        // El Fragment se carga automáticamente desde el XML
+        // El ViewModel está disponible para todos los fragments
     }
 }
