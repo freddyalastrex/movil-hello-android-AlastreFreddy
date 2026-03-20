@@ -1,8 +1,8 @@
-# Taller 1 - Hello Android
+# Taller 2 - Hello Android
 
 ## Información del Estudiante
 
-**Nombre:** Freddy Alastre
+**Nombres:** Freddy Alastre, Juan Pablo Gómez 
 **Código:** 1100976183
 **Fecha:** 05/03/2026
 
@@ -10,74 +10,29 @@
 
 # Respuestas
 
-## 1. Función del AndroidManifest.xml
 
-El archivo **AndroidManifest.xml** es uno de los archivos más importantes de una aplicación Android. Su función principal es describir la configuración general de la aplicación para el sistema operativo Android.
 
-En este archivo se definen elementos como:
+#### 1. ¿Qué problema resuelve el ViewModel en Android?
+El ViewModel resuelve principalmente la **pérdida de estado y datos** durante los cambios de configuración (como la rotación del dispositivo). Al tener un ciclo de vida más extenso que la Activity o el Fragment, permite que la aplicación mantenga la información sin necesidad de realizar nuevas cargas o procesos costosos cada vez que la interfaz se recrea.
 
-* El nombre del paquete de la aplicación.
-* Las actividades que tendrá la aplicación.
-* Los permisos que necesita la aplicación (internet, cámara, ubicación, etc.).
-* La actividad principal que se ejecuta cuando se abre la aplicación.
-* Información sobre los componentes de la app como servicios, receptores y proveedores de contenido.
+#### 2. ¿Por qué LiveData es "lifecycle-aware" y qué beneficio trae?
+Es "consciente del ciclo de vida" porque observa el estado de los componentes de la UI (LifecycleOwner). Solo envía actualizaciones de datos cuando la vista está en un estado activo (`STARTED` o `RESUMED`). Esto **evita fugas de memoria (memory leaks)** y errores de ejecución (crashes) al intentar actualizar elementos visuales de una pantalla que ya ha sido destruida o está en segundo plano.
 
-En resumen, el **AndroidManifest.xml** le indica al sistema Android cómo debe ejecutarse y qué componentes tiene la aplicación.
+#### 3. Explica el flujo de datos en MVVM
+El flujo es unidireccional y reactivo:
+- La **Vista** observa al **ViewModel**.
+- El **ViewModel** solicita datos al **Repositorio**.
+- El **Repositorio** entrega los datos al **ViewModel**.
+- El **ViewModel** actualiza su **LiveData**.
+- La **Vista** reacciona automáticamente al cambio en el LiveData y se refresca.
 
----
+#### 4. ¿Qué ventaja tiene usar Fragments vs múltiples Activities?
+Facilita la implementación de la **Single Activity Architecture**. Las principales ventajas son:
+- **Eficiencia:** Menor consumo de recursos al no tener que levantar múltiples instancias de Activity.
+- **Modularidad:** Permite reutilizar componentes de interfaz en diferentes partes de la app.
+- **Navegación:** Permite transiciones más fluidas y una gestión de la pila de retroceso más sencilla mediante el Navigation Component.
 
-## 2. Diferencia entre activity_main.xml y MainActivity.kt
-
-El archivo **activity_main.xml** y **MainActivity.kt** cumplen funciones diferentes dentro de una aplicación Android.
-
-**activity_main.xml**
-
-* Define el diseño visual de la pantalla.
-* Aquí se crean los elementos de la interfaz gráfica como botones, textos, imágenes y layouts.
-* Se usa el lenguaje XML para organizar la interfaz.
-
-**MainActivity.kt**
-
-* Contiene la lógica de programación de la aplicación.
-* Está escrito en el lenguaje Kotlin.
-* Aquí se controlan las acciones del usuario, como cuando se presiona un botón o se modifica un texto.
-
-En resumen, **activity_main.xml controla la apariencia de la aplicación**, mientras que **MainActivity.kt controla el comportamiento de la aplicación**.
+#### 5. ¿Cómo ayuda el Repository Pattern a la arquitectura?
+Ayuda proporcionando una **capa de abstracción** sobre las fuentes de datos. El resto de la aplicación no necesita saber si los datos provienen de una base de datos local (Room), una API externa (Retrofit) o memoria volátil. Esto hace que el código sea más fácil de testear, mantener y escalar.
 
 ---
-
-## 3. Gestión de recursos en Android
-
-La gestión de recursos en Android consiste en organizar y almacenar elementos que utiliza la aplicación en carpetas especiales dentro del proyecto. Estos recursos pueden ser:
-
-* Imágenes
-* Colores
-* Textos
-* Diseños de interfaz
-* Iconos
-* Animaciones
-
-Estos archivos se guardan en la carpeta **res** del proyecto.
-
-Por ejemplo:
-
-* **res/layout** → diseños de pantallas
-* **res/drawable** → imágenes e iconos
-* **res/values** → colores, textos y estilos
-
-La ventaja de este sistema es que permite reutilizar recursos, facilitar la traducción de aplicaciones a diferentes idiomas y adaptar la app a distintos tamaños de pantalla.
-
----
-
-## 4. Aplicaciones famosas que usan Kotlin
-
-Kotlin es un lenguaje moderno que se usa ampliamente para el desarrollo de aplicaciones Android. Muchas aplicaciones populares utilizan Kotlin en su desarrollo. Algunas de ellas son:
-
-* Netflix
-* Pinterest
-* Trello
-* Evernote
-* Uber
-
-Estas empresas utilizan Kotlin porque permite escribir código más limpio, seguro y fácil de mantener, además de ser totalmente compatible con Java y con el ecosistema de Android.
-
