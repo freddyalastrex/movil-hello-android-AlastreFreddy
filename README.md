@@ -47,26 +47,6 @@ Formulario de detalle organizado dentro de una tarjeta con separadores visuales.
 Botón flotante extendido (ExtendedFloatingActionButton) con texto e ícono.
 
 
-Estructura del proyecto
-com.Alastre.helloandroid
-│
-├── data/
-│   └── task/
-│       ├── Task.kt                  ← Modelo de datos de la tarea
-│       └── TaskRepository.kt        ← Lógica de guardado con SharedPreferences + Gson
-│
-├── ui/
-│   └── task/
-│       ├── TaskViewModel.kt         ← ViewModel compartido entre fragments
-│       ├── TaskListFragment.kt      ← Pantalla principal con lista de tareas
-│       ├── TaskDetailFragment.kt    ← Pantalla de creación y edición de tareas
-│       └── TaskAdapter.kt           ← Adapter para el RecyclerView
-│
-├── receiver/
-│   └── TaskReminderReceiver.kt      ← BroadcastReceiver para las notificaciones
-│
-└── MainActivity.kt                  ← Activity principal (contenedor de fragments)
-
 Dependencias agregadas
 En build.gradle (Module: app):
 gradleimplementation("com.google.code.gson:gson:2.10.1")
